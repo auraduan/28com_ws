@@ -1,0 +1,80 @@
+<launch>
+    <!-- 全局规划器节点 -->
+    <node pkg="offboard_pkg" name="global_planner" type="global_planner_main" output="screen">
+        
+        <!-- ======================= -->
+        <!--        基础控制参数      -->
+        <!-- ======================= -->
+        <!-- 控制循环时间间隔 (秒)，决定控制频率 -->
+        <param name="ctrl_interval" value="0.01" type="double"/>
+        <!-- 到达目标点的判定半径 (米) -->
+        <param name="precision" value="0.1" type="double"/>
+        <!-- 到达目标点后的悬停/停留时间 (秒) -->
+        <param name="arrival_delay" value="0.01" type="double"/>
+        
+        <!-- ======================= -->
+        <!--       偏航(Yaw)控制      -->
+        <!-- ======================= -->
+        <!-- 偏航角 P 增益 -->
+        <param name="yaw_p" value="15.0" type="double"/>
+        <!-- 偏航角 I 增益 -->
+        <param name="yaw_i" value="0.0" type="double"/>
+        <!-- 最大偏航角速度限制 (rad/s) -->
+        <param name="yaw_max" value="1.0" type="double"/>
+        <!-- 偏航角对准精度阈值 (rad)，小于此值认为已对准 -->
+        <param name="yaw_precision" value="0.05" type="double"/>
+        <!-- 旋转对准后的过冲量 (rad)，左/右独立设定 -->
+        <!-- 往左旋转时的额外过冲 -->
+        <param name="yaw_overshoot_left" value="0.05" type="double"/>
+        <!-- 往右旋转时的额外过冲 (默认0，不多转) -->
+        <param name="yaw_overshoot_right" value="0.0" type="double"/>
+        <!-- overshoot 生效的最小偏航误差 (rad)，偏移小于此值不加 overshoot -->
+        <param name="yaw_overshoot_threshold" value="0.05" type="double"/>
+        
+        <!-- ======================= -->
+        <!--       速度/油门控制      -->
+        <!-- ======================= -->
+        <!-- 移动时的基础油门值 (0.0 ~ 1.0) -->
+        <param name="thrust_set_min" value="0.80" type="double"/>
+        
+
+        <!-- ======================= -->
+        <!--       路径规划参数       -->
+        <!-- ======================= -->
+        <!-- 前视角度 (可能用于某些特定逻辑) -->
+        <param name="lookahead_angle" value="8.0" type="double"/>
+        <!-- 基础对准检查间隔 (秒) -->
+        <param name="alignment_check_interval" value="1.0" type="double"/>
+        <!-- 前瞻转向距离 (米)，接近当前目标点该距离时开始转向下一个目标 -->
+        <param name="lookahead_distance" value="0.15" type="double"/>
+        <!-- 目标点列表文件路径 -->
+        <param name="goal_file_path" value="$(find offboard_pkg)/launch/goal.xml" type="string"/>
+        
+        <!-- ======================= -->
+        <!--    动态反馈与修正参数    -->
+        <!-- ======================= -->
+        <!-- 最小反馈检查间隔 (秒)，对应高油门 -->
+        <param name="feedback_check_interval_min" value="0.25" type="double"/>
+        <!-- 最大反馈检查间隔 (秒)，对应低油门 -->
+        <param name="feedback_check_interval_max" value="1.0" type="double"/>
+        <!-- 移动过程中允许的最大偏航角偏差 (rad)，超过约5度(0.087)将触发修正 -->
+        <param name="alignment_yaw_threshold" value="0.087" type="double"/>
+        <!-- 视觉目标横向偏移系数 (左/右独立设定) -->
+        <!-- 目标在车左侧时的补偿系数 -->
+        <param name="extra_offset_factor_left" value="0.6" type="double"/>
+        <!-- 目标在车右侧时的补偿系数 (车偏右时增大此值) -->
+        <param name="extra_offset_factor_right" value="-0.2" type="double"/>
+        
+        <!-- ======================= -->
+        <!--       视觉/相机参数      -->
+        <!-- ======================= -->
+        <!-- 相机在机体坐标系下的 X 轴偏移 (前向, 米) -->
+        <param name="camera_offset_x" value="0.1" type="double"/>
+        <!-- 相机在机体坐标系下的 Y 轴偏移 (左向, 米) -->
+        <param name="camera_offset_y" value="0.0" type="double"/>
+        
+    </node>
+</launch>
+
+
+

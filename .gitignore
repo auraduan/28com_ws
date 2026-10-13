@@ -1,0 +1,111 @@
+# ==========================================================
+# 28com_ws — ROS 1 (catkin) 无人车研究工作空间
+# ==========================================================
+
+# ----------------------------------------------------------
+# catkin / ROS 构建产物
+# ----------------------------------------------------------
+build/
+devel/
+install/
+logs/
+log/
+.catkin_generated/
+catkin_generated/
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+test_results/
+.ros/
+
+# 以下文件由 catkin_make 在工作空间根目录生成，仅忽略根目录，
+# 避免误伤 src/ 下同名的上游源文件（如 rplidar_ros/sdk/Makefile）
+/Makefile
+/cmake.lock
+/.rosinstall
+/_setup_util.py
+/setup.sh
+/setup.bash
+/setup.zsh
+/local_setup.sh
+/local_setup.bash
+/local_setup.zsh
+/env.sh
+*.bag
+*.pbstream
+*.pcd
+*.ply
+
+# ----------------------------------------------------------
+# 视觉模型训练产物（体积大，不入库）
+# 保留推理模型：src/model_location/model/ 与 mobileclip_blt.ts
+# ----------------------------------------------------------
+src/model_location/runs/
+src/model_location/train*/
+runs/
+wandb/
+*.ckpt
+*.safetensors
+last_mosaic.pt
+
+# ----------------------------------------------------------
+# C / C++ 编译中间产物
+# ----------------------------------------------------------
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.gcno
+*.gcda
+*.gcov
+
+# ----------------------------------------------------------
+# Python
+# ----------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.python-version
+
+# ----------------------------------------------------------
+# IDE / 编辑器
+# ----------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+compile_commands.json
+.cache/
+
+# ----------------------------------------------------------
+# 操作系统
+# ----------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# ----------------------------------------------------------
+# 本地临时文件 / 备份
+# ----------------------------------------------------------
+*.tmp
+*.bak
+*.log
+*.orig
+*.rej
+bin_*/

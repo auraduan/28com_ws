@@ -1,0 +1,7 @@
+<launch>
+
+ <node pkg="map_server" type="map_server" name="map_server" output="screen">
+    <param name="frame_id" value="cartographer_map" type="str"/>
+ </node>
+
+</launch>
